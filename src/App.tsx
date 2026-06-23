@@ -1,7 +1,7 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { Reveal } from "./components/Reveal";
 import { Scales } from "./components/Scales";
-import { img } from "./assets/images";
+import { Photo } from "./components/Photo";
 
 const NAV = [
   ["#legenda", "Легенда"],
@@ -82,7 +82,7 @@ export default function App() {
 
       {/* Hero */}
       <section className="hero" id="hero">
-        <div className="hero__media" style={{ backgroundImage: `url(${img.hero})` }} aria-hidden="true" />
+        <Photo name="hero" className="hero__img" eager />
         <Reveal className="hero__inner">
           <div className="lockup">
             <span className="lockup__mark"><Scales size={72} strokeWidth={2.2} /></span>
@@ -113,7 +113,9 @@ export default function App() {
               </span>
             </div>
           </Reveal>
-          <Reveal className="legend__media" style={{ backgroundImage: `url(${img.scales})` }} delay={0.1} />
+          <Reveal className="legend__media" delay={0.1}>
+            <Photo name="scales" className="frame__img" alt="Латунные аптекарские весы с гирями в мискалях" />
+          </Reveal>
         </div>
       </section>
 
@@ -144,7 +146,7 @@ export default function App() {
           <Reveal><h2 className="section__h section__h--light">Пять ароматов, единый знак,<br />свой акцент у каждого</h2></Reveal>
           <Reveal className="feature" style={accentStyle(SCENTS[0].accent)}>
             <div className="feature__media">
-              <div className="feature__photo" style={{ backgroundImage: `url(${img[SCENTS[0].k]})` }} />
+              <Photo name={SCENTS[0].k} className="feature__photo" alt="Флакон аромата Ризк" />
             </div>
             <div className="feature__body">
               <span className="feature__tag">{SCENTS[0].tag}</span>
@@ -160,7 +162,7 @@ export default function App() {
             {SCENTS.slice(1).map((s, i) => (
               <Reveal key={s.k} className="scent" style={accentStyle(s.accent)} delay={i * 0.06}>
                 <div className="scent__media">
-                  <div className="scent__photo" style={{ backgroundImage: `url(${img[s.k]})` }} />
+                  <Photo name={s.k} className="scent__photo" alt={`Флакон аромата ${s.n}`} />
                 </div>
                 <div className="scent__body">
                   <div className="scent__name">
@@ -185,7 +187,7 @@ export default function App() {
             {LINES.map((l, i) => (
               <Reveal key={l.k} className="line" delay={i * 0.07}>
                 <div className="line__media">
-                  <div className="line__photo" style={{ backgroundImage: `url(${img[l.k]})` }} />
+                  <Photo name={l.k} className="line__photo" alt={l.n} />
                 </div>
                 <h3>{l.n}</h3>
                 <p>{l.p}</p>
@@ -199,10 +201,9 @@ export default function App() {
       <section className="section bottle" id="flakon">
         <div className="glow" />
         <div className="wrap bottle__grid">
-          <Reveal
-            className="bottle__media"
-            style={{ ["--photo" as string]: `url(${img.bottle})` } as CSSProperties}
-          />
+          <Reveal className="bottle__media">
+            <Photo name="bottle" className="bottle__img" alt="Флакон Мискаль из матового стекла с латунной крышкой" />
+          </Reveal>
           <Reveal className="bottle__text" delay={0.1}>
             <h2 className="display">Флакон, который весит больше,<br />чем кажется</h2>
             <p>Невысокий, плотный, с прямыми гранями и мягко скруглёнными углами. Матовое кремовое или дымчато-янтарное стекло. Крышка из латуни или дерева, увесистая, с приятным щелчком.</p>
@@ -257,7 +258,7 @@ export default function App() {
 
       {/* Финал */}
       <section className="closer">
-        <div className="closer__media" style={{ backgroundImage: `url(${img.closer})` }} aria-hidden="true" />
+        <Photo name="closer" className="closer__img" />
         <Reveal className="wrap closer__inner">
           <p className="closer__ar" lang="ar" dir="rtl">وزن العطر</p>
           <h2 className="display">Вес аромата</h2>
