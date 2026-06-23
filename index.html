@@ -3,29 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>МИСКАЛЬ · مثقال — Аромат на вес золота</title>
-<meta name="description" content="МИСКАЛЬ — нишевая безалкогольная масляная парфюмерия, бахур и уд. Тихий люкс, ремесло и идея веса: то, что взвешивают, а не разбрызгивают." />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+<title>МИСКАЛЬ مثقال. Аромат на вес золота</title>
+<meta name="description" content="МИСКАЛЬ. Нишевая безалкогольная масляная парфюмерия, бахур и уд. Тихий люкс, ремесло и идея веса: то, что взвешивают, а не разбрызгивают." />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <!-- ===== Навигация ===== -->
 <header class="nav" id="nav">
-  <a href="#hero" class="nav__brand" aria-label="МИСКАЛЬ — на главную">
-    <span class="nav__mark" aria-hidden="true">
-      <!-- знак-весы -->
-      <svg viewBox="0 0 64 64" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <a href="#hero" class="nav__brand" aria-label="МИСКАЛЬ, на главную">
+    <span class="mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 8v44M20 52h24M32 14 12 24m20-10 20 10M12 24l-6 12h12l-6-12Zm40 0-6 12h12l-6-12Z"/>
-        <circle cx="32" cy="11" r="1.6" fill="currentColor"/>
       </svg>
     </span>
     <span class="nav__word">МИСКАЛЬ</span>
   </a>
-  <nav class="nav__links">
+  <nav class="nav__links" aria-label="Разделы">
     <a href="#legenda">Легенда</a>
     <a href="#aromaty">Ароматы</a>
     <a href="#liniya">Линии</a>
@@ -34,255 +28,214 @@
   </nav>
 </header>
 
-<!-- ===== Hero ===== -->
+<!-- ===== Hero: асимметрия, текст справа над открытым пространством кадра ===== -->
 <section class="hero" id="hero">
-  <div class="hero__media" data-img="hero">
-    <span class="img-note">Фон: тёмная удовая текстура / макро капли масла</span>
-  </div>
+  <div class="hero__media" data-img="hero" aria-hidden="true"></div>
   <div class="hero__inner reveal">
-    <div class="hero__logo" aria-hidden="true">
-      <svg viewBox="0 0 120 120" width="92" height="92" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M60 16v76M40 92h40"/>
-        <path d="M60 26 26 42m34-16 34 16"/>
-        <path d="M26 42 15 66h22L26 42Z"/>
-        <path d="M94 42 83 66h22L94 42Z"/>
-        <circle cx="60" cy="20" r="2.4" fill="currentColor"/>
-      </svg>
+    <div class="lockup">
+      <span class="lockup__mark" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="72" height="72" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M60 16v76M40 92h40M60 26 26 42m34-16 34 16M26 42 15 66h22L26 42ZM94 42 83 66h22L94 42Z"/>
+        </svg>
+      </span>
+      <h1 class="lockup__word">МИСКАЛЬ</h1>
+      <p class="lockup__ar" lang="ar" dir="rtl">مثقال</p>
     </div>
-    <h1 class="hero__title">МИСКАЛЬ</h1>
-    <p class="hero__arabic" lang="ar" dir="rtl">مثقال</p>
     <p class="hero__slogan">Аромат на вес золота</p>
-    <p class="hero__sub">Нишевая безалкогольная масляная парфюмерия, бахур и уд.<br/>То, что взвешивают, а не разбрызгивают.</p>
-    <a href="#aromaty" class="btn">Смотреть ароматы</a>
+    <a href="#aromaty" class="btn">Смотреть коллекцию</a>
   </div>
-  <div class="hero__scroll" aria-hidden="true"><span></span></div>
 </section>
 
-<!-- ===== Легенда ===== -->
-<section class="section legenda" id="legenda">
-  <div class="wrap">
-    <p class="eyebrow reveal">Мера драгоценного</p>
-    <h2 class="section__title reveal">Мискаль — древняя мера веса,<br/>которой взвешивали самое драгоценное</h2>
-    <div class="legenda__grid">
-      <div class="legenda__text reveal">
-        <p><strong>Мискаль</strong> (араб. <span lang="ar" dir="rtl">مثقال</span>, <em>mithqāl</em>) ≈ 4,25 г — мера, которой веками отмеряли золото, мускус, амбру, шафран и уд.</p>
-        <p>Мы вернулись к тому времени, когда аромат был концентрированным, дорогим и наносился каплями. Это не флакон спрея — это мера драгоценного.</p>
-        <ul class="ticks">
-          <li>Аромат — драгоценность, которую взвешивают, а не разбрызгивают</li>
-          <li>Точность, ремесло и ритуал вместо массового производства</li>
-          <li>Прямая, но не китчевая отсылка к восточной традиции</li>
-        </ul>
+<!-- ===== Легенда: редакционный сплит + крупная цифра веса ===== -->
+<section class="section legend" id="legenda">
+  <div class="wrap legend__grid">
+    <div class="legend__lede reveal">
+      <h2 class="display">Мера, которой взвешивали<br/>самое драгоценное</h2>
+      <p>Мискаль (<span lang="ar" dir="rtl">مثقال</span>, <em>mithqāl</em>) это древняя мера веса. Ею веками отмеряли золото, мускус, амбру, шафран и уд.</p>
+      <p>Мы вернулись к тому времени, когда аромат был концентрированным, дорогим и наносился каплями. Это не флакон спрея, а мера драгоценного.</p>
+      <div class="figure">
+        <span class="figure__num">4,25</span>
+        <span class="figure__rest"><span class="figure__unit">грамма</span><span class="figure__cap">один мискаль</span></span>
       </div>
-      <figure class="legenda__media" data-img="scales">
-        <span class="img-note">Макро: латунные аптекарские весы с каплей масла на чаше</span>
-      </figure>
     </div>
+    <figure class="legend__media reveal" data-img="scales" aria-label="Латунные аптекарские весы с каплей масла"></figure>
   </div>
 </section>
 
-<!-- ===== Философия / три опоры ===== -->
+<!-- ===== Три опоры: редакционные ряды с нумерацией, без карточек ===== -->
 <section class="section pillars">
   <div class="wrap">
-    <p class="eyebrow reveal">Философия</p>
-    <h2 class="section__title reveal">Три опоры бренда</h2>
-    <div class="cards-3">
+    <h2 class="section__h reveal">Три опоры бренда</h2>
+    <div class="pillars__list">
       <article class="pillar reveal">
-        <span class="pillar__num">01</span>
-        <h3>Подлинность</h3>
-        <p>Настоящие масляные композиции, без спирта — как было всегда на Востоке. Раскрываются от тепла кожи, держатся 8–12 часов.</p>
+        <span class="pillar__n">01</span>
+        <div class="pillar__body">
+          <h3>Подлинность</h3>
+          <p>Настоящие масляные композиции, без спирта, как было всегда на Востоке. Раскрываются от тепла кожи, держатся 8-12 часов.</p>
+        </div>
       </article>
       <article class="pillar reveal">
-        <span class="pillar__num">02</span>
-        <h3>Вес как код</h3>
-        <p>Каждый продукт измеряется в мискалях. Это одновременно и смысл, и визуальный язык бренда.</p>
+        <span class="pillar__n">02</span>
+        <div class="pillar__body">
+          <h3>Вес как код</h3>
+          <p>Каждый продукт измеряется в мискалях. Это одновременно и смысл, и визуальный язык бренда.</p>
+        </div>
       </article>
       <article class="pillar reveal">
-        <span class="pillar__num">03</span>
-        <h3>Ремесло</h3>
-        <p>Прозрачное происхождение уда, розы и смол. Малые партии. Внимание к детали вместо конвейера.</p>
+        <span class="pillar__n">03</span>
+        <div class="pillar__body">
+          <h3>Ремесло</h3>
+          <p>Прозрачное происхождение уда, розы и смол. Малые партии. Внимание к детали вместо конвейера.</p>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ===== Сигнатурные ароматы ===== -->
+<!-- ===== Ароматы: тёмная секция, флагман-фичер + сетка ===== -->
 <section class="section aromaty" id="aromaty">
   <div class="wrap">
-    <p class="eyebrow reveal">Сигнатурная коллекция</p>
-    <h2 class="section__title reveal">Пять ароматов — единый знак,<br/>свой акцент у каждого</h2>
+    <p class="eyebrow reveal">Коллекция</p>
+    <h2 class="section__h section__h--light reveal">Пять ароматов, единый знак,<br/>свой акцент у каждого</h2>
 
-    <div class="scents">
-      <article class="scent reveal" style="--accent:#C98A2E">
-        <div class="scent__media" data-img="rizk"><span class="img-note">Флакон РИЗК · охра/терракота</span></div>
-        <div class="scent__body">
-          <span class="scent__bar"></span>
-          <div class="scent__head">
-            <h3>Ризк</h3>
-            <span class="scent__ar" lang="ar" dir="rtl">رزق</span>
-          </div>
-          <p class="scent__meaning">Изобилие, благословение · флагман</p>
-          <p class="scent__notes">Роза Таиф · шафран · уд</p>
-          <p class="scent__char">Тёплый, парадный аромат-благословение, который носишь с собой весь день.</p>
+    <article class="feature reveal" style="--accent:#C98A2E">
+      <div class="feature__media" data-img="rizk" aria-label="Флакон Ризк"></div>
+      <div class="feature__body">
+        <span class="feature__tag">Флагман</span>
+        <div class="scent__name">
+          <h3>Ризк</h3>
+          <span class="scent__ar" lang="ar" dir="rtl">رزق</span>
+        </div>
+        <p class="scent__notes">Роза Таиф, шафран, уд</p>
+        <p class="scent__desc">Тёплый, парадный аромат-благословение. Наносят каплей на запястье утром, и он раскрывается весь день.</p>
+      </div>
+    </article>
+
+    <div class="scent-grid">
+      <article class="scent reveal" style="--accent:#3E4D78">
+        <div class="scent__media" data-img="leil" aria-label="Флакон Лейл"></div>
+        <div class="scent__row">
+          <div class="scent__name"><h3>Лейл</h3><span class="scent__ar" lang="ar" dir="rtl">ليل</span></div>
+          <p class="scent__notes">Амбра, белый мускус, ладан</p>
+          <p class="scent__desc">Ночь. Глубокий, обволакивающий, вечерний.</p>
         </div>
       </article>
-
-      <article class="scent reveal" style="--accent:#2E3A5C">
-        <div class="scent__media" data-img="leil"><span class="img-note">Флакон ЛЕЙЛ · индиго</span></div>
-        <div class="scent__body">
-          <span class="scent__bar"></span>
-          <div class="scent__head">
-            <h3>Лейл</h3>
-            <span class="scent__ar" lang="ar" dir="rtl">ليل</span>
-          </div>
-          <p class="scent__meaning">Ночь</p>
-          <p class="scent__notes">Амбра · белый мускус · ладан</p>
-          <p class="scent__char">Глубокий, обволакивающий, вечерний.</p>
-        </div>
-      </article>
-
       <article class="scent reveal" style="--accent:#C9A36B">
-        <div class="scent__media" data-img="sahar"><span class="img-note">Флакон САХАР · светлый жасминовый беж</span></div>
-        <div class="scent__body">
-          <span class="scent__bar"></span>
-          <div class="scent__head">
-            <h3>Сахар</h3>
-            <span class="scent__ar" lang="ar" dir="rtl">سحر</span>
-          </div>
-          <p class="scent__meaning">Рассвет, магия</p>
-          <p class="scent__notes">Бергамот · жасмин самбак · сандал</p>
-          <p class="scent__char">Светлый, дневной, прозрачный.</p>
+        <div class="scent__media" data-img="sahar" aria-label="Флакон Сахар"></div>
+        <div class="scent__row">
+          <div class="scent__name"><h3>Сахар</h3><span class="scent__ar" lang="ar" dir="rtl">سحر</span></div>
+          <p class="scent__notes">Бергамот, жасмин самбак, сандал</p>
+          <p class="scent__desc">Рассвет. Светлый, дневной, прозрачный.</p>
         </div>
       </article>
-
       <article class="scent reveal" style="--accent:#B98A86">
-        <div class="scent__media" data-img="misk"><span class="img-note">Флакон МИСК · пыльная роза</span></div>
-        <div class="scent__body">
-          <span class="scent__bar"></span>
-          <div class="scent__head">
-            <h3>Миск</h3>
-            <span class="scent__ar" lang="ar" dir="rtl">مسك</span>
-          </div>
-          <p class="scent__meaning">Мускус</p>
-          <p class="scent__notes">Чистый белый мускус · пудровый шлейф</p>
-          <p class="scent__char">Чистый, «банный», очень носибельный.</p>
+        <div class="scent__media" data-img="misk" aria-label="Флакон Миск"></div>
+        <div class="scent__row">
+          <div class="scent__name"><h3>Миск</h3><span class="scent__ar" lang="ar" dir="rtl">مسك</span></div>
+          <p class="scent__notes">Чистый белый мускус, пудровый шлейф</p>
+          <p class="scent__desc">Мускус. Чистый и очень носибельный.</p>
         </div>
       </article>
-
-      <article class="scent reveal" style="--accent:#5A4636">
-        <div class="scent__media" data-img="udroyal"><span class="img-note">Флакон УД РОЯЛЬ · тёмный графит-уд</span></div>
-        <div class="scent__body">
-          <span class="scent__bar"></span>
-          <div class="scent__head">
-            <h3>Уд Рояль</h3>
-            <span class="scent__ar" lang="ar" dir="rtl">عود</span>
-          </div>
-          <p class="scent__meaning">Вершина линии</p>
-          <p class="scent__notes">Дымный уд · кожа · специи</p>
-          <p class="scent__char">Самый плотный — «вечерний оазис».</p>
+      <article class="scent reveal" style="--accent:#7A6049">
+        <div class="scent__media" data-img="udroyal" aria-label="Флакон Уд Рояль"></div>
+        <div class="scent__row">
+          <div class="scent__name"><h3>Уд Рояль</h3><span class="scent__ar" lang="ar" dir="rtl">عود</span></div>
+          <p class="scent__notes">Дымный уд, кожа, специи</p>
+          <p class="scent__desc">Вершина линии. Самый плотный, вечерний.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ===== Продуктовые линии ===== -->
-<section class="section liniya" id="liniya">
+<!-- ===== Линии: бенто с разноразмерными плитками на фото ===== -->
+<section class="section lines" id="liniya">
   <div class="wrap">
-    <p class="eyebrow reveal">Продуктовые линии</p>
-    <h2 class="section__title reveal">От входного аттара<br/>до коллекционного уда</h2>
-    <div class="cards-4">
-      <article class="line reveal">
-        <div class="line__media" data-img="attar"><span class="img-note">Аттар-роллеры 3–12 мл</span></div>
-        <h3>Аттар</h3>
-        <p>Концентрированные масляные духи во флаконах-роллерах и dab-on, 3–12 мл. Наносятся каплями. Полностью без спирта.</p>
+    <p class="eyebrow reveal">Линии</p>
+    <h2 class="section__h reveal">От входного аттара<br/>до коллекционного уда</h2>
+    <div class="bento">
+      <article class="tile tile--lg reveal" data-img="ud">
+        <div class="tile__cap">
+          <h3>Уд</h3>
+          <p>Премиальная вершина: щепа агара и дехналь уд в миниатюрных флаконах. Коллекционный, статусный продукт.</p>
+        </div>
       </article>
-      <article class="line reveal">
-        <div class="line__media" data-img="bahur"><span class="img-note">Бахур: щепа и таблетки, дым</span></div>
-        <h3>Бахур</h3>
-        <p>Ароматические таблетки и пропитанная щепа для воскуривания. Домашний ритуал, аромат для одежды и пространства.</p>
+      <article class="tile reveal" data-img="attar">
+        <div class="tile__cap"><h3>Аттар</h3><p>Масляные духи в роллерах и dab-on, 3-12 мл. По капле, без спирта.</p></div>
       </article>
-      <article class="line reveal">
-        <div class="line__media" data-img="ud"><span class="img-note">Уд-щепа и дехналь уд</span></div>
-        <h3>Уд</h3>
-        <p>Премиальная линия-«потолок»: щепа агара и дехналь уд в миниатюрных флаконах. Коллекционный, статусный продукт.</p>
+      <article class="tile reveal" data-img="bahur">
+        <div class="tile__cap"><h3>Бахур</h3><p>Щепа и таблетки для воскуривания. Ритуал и аромат для дома.</p></div>
       </article>
-      <article class="line reveal">
-        <div class="line__media" data-img="nabor"><span class="img-note">Деревянная шкатулка-«аптечка» + мини-весы</span></div>
-        <h3>Наборы</h3>
-        <p>Деревянная шкатулка-«аптекарский набор»: 3–5 мини-аттаров и мерная ложечка-сувенир. Главный драйвер подарков.</p>
+      <article class="tile reveal" data-img="nabor">
+        <div class="tile__cap"><h3>Наборы</h3><p>Деревянная шкатулка с мини-аттарами и мерной ложечкой. Главный подарок.</p></div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ===== Флакон / ремесло ===== -->
-<section class="section flakon" id="flakon">
-  <div class="wrap flakon__grid">
-    <figure class="flakon__media reveal" data-img="bottle">
-      <span class="img-note">Флакон: матовое кремовое стекло, латунная крышка, при свечах</span>
-    </figure>
-    <div class="flakon__text reveal">
-      <p class="eyebrow">Ремесло и тактильность</p>
-      <h2 class="section__title section__title--left">Флакон, который ощущается<br/>тяжелее, чем кажется</h2>
-      <p>Невысокий, плотный флакон с прямыми гранями и мягко скруглёнными углами. Матовое кремовое или дымчато-янтарное стекло. Крышка из латуни или дерева — увесистая, с приятным щелчком.</p>
-      <ul class="specs">
-        <li><span>Стекло</span> матовое, аптекарское — не глянцевое</li>
-        <li><span>Крышка</span> латунь / дерево, не пластик «под золото»</li>
-        <li><span>Нанесение</span> роллер или dab-on, по капле</li>
-        <li><span>Объёмы</span> 3 · 6 · 12 мл, вес дублируется в мискалях</li>
-      </ul>
-      <p class="flakon__label" lang="ar" dir="rtl">رزق · ٦ مثقال</p>
+<!-- ===== Флакон: сплит фото + спецификация парами ===== -->
+<section class="section bottle" id="flakon">
+  <div class="wrap bottle__grid">
+    <figure class="bottle__media reveal" data-img="bottle" aria-label="Флакон из матового стекла с латунной крышкой"></figure>
+    <div class="bottle__text reveal">
+      <h2 class="display">Флакон, который весит больше,<br/>чем кажется</h2>
+      <p>Невысокий, плотный, с прямыми гранями и мягко скруглёнными углами. Матовое кремовое или дымчато-янтарное стекло. Крышка из латуни или дерева, увесистая, с приятным щелчком.</p>
+      <dl class="spec">
+        <div class="spec__row"><dt>Стекло</dt><dd>матовое, аптекарское, не глянцевое</dd></div>
+        <div class="spec__row"><dt>Крышка</dt><dd>латунь или дерево, не пластик</dd></div>
+        <div class="spec__row"><dt>Нанесение</dt><dd>роллер или стеклянная палочка, по капле</dd></div>
+        <div class="spec__row"><dt>Объёмы</dt><dd>3, 6 и 12 мл, вес дублируется в мискалях</dd></div>
+      </dl>
+      <p class="bottle__label" lang="ar" dir="rtl">رزق · ٦ مثقال</p>
     </div>
   </div>
 </section>
 
-<!-- ===== Ценовая лестница ===== -->
-<section class="section tsena" id="tsena">
+<!-- ===== Цена: восходящая лестница ===== -->
+<section class="section ladder" id="tsena">
   <div class="wrap">
-    <p class="eyebrow reveal">Ценовая лестница</p>
-    <h2 class="section__title reveal">Путь вверх: от пробы<br/>до статуса</h2>
-    <div class="ladder">
-      <article class="step reveal">
-        <span class="step__tier">Входной</span>
+    <h2 class="section__h reveal">Путь вверх: от пробы до статуса</h2>
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__k">Входной</span>
         <h3>Аттар 3 мл</h3>
-        <p>Знакомство, импульсная покупка. Первое касание бренда.</p>
-      </article>
-      <article class="step reveal">
-        <span class="step__tier">Средний</span>
-        <h3>Аттар 12 мл · бахур</h3>
+        <p>Знакомство и импульсная покупка. Первое касание бренда.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__k">Средний</span>
+        <h3>Аттар 12 мл, бахур</h3>
         <p>Основной объём продаж. Возврат за полным форматом любимого аромата.</p>
-      </article>
-      <article class="step reveal step--top">
-        <span class="step__tier">Премиум</span>
-        <h3>Дехналь уд · шкатулки</h3>
+      </li>
+      <li class="step step--top reveal">
+        <span class="step__k">Премиум</span>
+        <h3>Дехналь уд, шкатулки</h3>
         <p>Статус бренда и подарки. Уд и наборы поднимают ценность всей линейки.</p>
-      </article>
-    </div>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- ===== Отличие ===== -->
-<section class="section otlichie">
+<!-- ===== Отличие: горизонтальная value-полоса ===== -->
+<section class="section values">
   <div class="wrap">
-    <p class="eyebrow reveal">Почему мы</p>
-    <h2 class="section__title reveal">Выделяемся форматом,<br/>а не громкостью</h2>
-    <div class="cards-4">
-      <div class="diff reveal"><h3>Без спирта</h3><p>Масляная традиция, а не ограничение. Как было всегда на Востоке.</p></div>
-      <div class="diff reveal"><h3>Концепция веса</h3><p>Смысловой и визуальный код, которого нет ни у кого в категории.</p></div>
-      <div class="diff reveal"><h3>Тихий люкс</h3><p>Эстетическое отличие от золотого китча конкурентов.</p></div>
-      <div class="diff reveal"><h3>Прозрачность</h3><p>Уд, роза и смолы с историей происхождения. Малые партии.</p></div>
+    <h2 class="section__h reveal">Выделяемся форматом, а не громкостью</h2>
+    <div class="values__strip">
+      <div class="value reveal"><h3>Без спирта</h3><p>Масляная традиция, а не ограничение.</p></div>
+      <div class="value reveal"><h3>Концепция веса</h3><p>Код, которого нет ни у кого в категории.</p></div>
+      <div class="value reveal"><h3>Тихий люкс</h3><p>Эстетика против золотого китча.</p></div>
+      <div class="value reveal"><h3>Прозрачность</h3><p>Уд, роза и смолы с историей. Малые партии.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== Финальный блок ===== -->
+<!-- ===== Финал: манифест над фото ===== -->
 <section class="closer">
-  <div class="closer__media" data-img="closer"><span class="img-note">Фон: рука с каплей масла на запястье, при свечах</span></div>
+  <div class="closer__media" data-img="closer" aria-hidden="true"></div>
   <div class="wrap closer__inner reveal">
     <p class="closer__ar" lang="ar" dir="rtl">وزن العطر</p>
-    <h2>Вес аромата</h2>
-    <p class="closer__sub">«Ризк наносят каплей на запястье утром — и он раскрывается весь день, как благословение, которое носишь с собой.»</p>
-    <a href="#hero" class="btn btn--ghost">Вернуться к началу</a>
+    <h2 class="display">Вес аромата</h2>
+    <p class="closer__sub">То, что взвешивают, а не разбрызгивают.</p>
+    <a href="#hero" class="btn btn--ghost">Наверх</a>
   </div>
 </section>
 
@@ -290,7 +243,7 @@
 <footer class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <span class="nav__mark" aria-hidden="true">
+      <span class="mark" aria-hidden="true">
         <svg viewBox="0 0 64 64" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M32 8v44M20 52h24M32 14 12 24m20-10 20 10M12 24l-6 12h12l-6-12Zm40 0-6 12h12l-6-12Z"/>
         </svg>
@@ -298,17 +251,14 @@
       <span class="footer__word">МИСКАЛЬ <span lang="ar" dir="rtl">مثقال</span></span>
       <p class="footer__tag">Мера драгоценного</p>
     </div>
-    <nav class="footer__nav">
+    <nav class="footer__nav" aria-label="Разделы">
       <a href="#legenda">Легенда</a>
       <a href="#aromaty">Ароматы</a>
       <a href="#liniya">Линии</a>
       <a href="#flakon">Флакон</a>
       <a href="#tsena">Цена</a>
     </nav>
-    <div class="footer__meta">
-      <p>Масляная парфюмерия · бахур · уд</p>
-      <p>© 2026 МИСКАЛЬ. Аромат на вес золота.</p>
-    </div>
+    <p class="footer__meta">Масляная парфюмерия, бахур и уд.<br/>2026 МИСКАЛЬ. Аромат на вес золота.</p>
   </div>
 </footer>
 
