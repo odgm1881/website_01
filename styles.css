@@ -274,3 +274,38 @@ a { color: inherit; text-decoration: none; }
   .reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
   .hero__scroll span { animation: none; }
 }
+
+/* ===================== Подключённые фотографии ===================== */
+/* Реальные снимки заменяют тёмные плейсхолдеры. */
+[data-img] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+[data-img]::before { display: none; }   /* убрать водяной знак-весы */
+.img-note { display: none; }            /* убрать подписи-плейсхолдеры */
+
+[data-img="hero"]    { background-image: url("images/hero.jpg"); }
+[data-img="scales"]  { background-image: url("images/scales.jpg"); }
+[data-img="rizk"]    { background-image: url("images/rizk.jpg"); }
+[data-img="leil"]    { background-image: url("images/leil.jpg"); }
+[data-img="sahar"]   { background-image: url("images/sahar.jpg"); }
+[data-img="misk"]    { background-image: url("images/misk.jpg"); }
+[data-img="udroyal"] { background-image: url("images/udroyal.jpg"); }
+[data-img="attar"]   { background-image: url("images/attar.jpg"); }
+[data-img="bahur"]   { background-image: url("images/bahur.jpg"); }
+[data-img="ud"]      { background-image: url("images/ud.jpg"); }
+[data-img="nabor"]   { background-image: url("images/nabor.jpg"); }
+[data-img="bottle"]  { background-image: url("images/bottle.jpg"); }
+[data-img="closer"]  { background-image: url("images/closer.jpg"); }
+
+/* Hero: флакон на снимке слева, текст по центру. Ровный тёплый веер затемнения
+   держит белый текст читаемым и не прячет флакон. */
+[data-img="hero"]   { background-position: center; }
+.hero::after {
+  background:
+    linear-gradient(180deg, rgba(20,12,8,0.55) 0%, rgba(20,12,8,0.15) 30%, rgba(20,12,8,0.5) 100%),
+    radial-gradient(70% 60% at 50% 50%, rgba(20,12,8,0.18) 0%, rgba(20,12,8,0.5) 100%);
+}
+/* Финал: рука с каплей справа — текст по центру, ровное затемнение. */
+[data-img="closer"] { background-position: center; }
