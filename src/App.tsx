@@ -126,7 +126,8 @@ export default function App() {
           <div className="cards-3">
             {PILLARS.map(([num, h, p], i) => (
               <Reveal key={num} className="pillar" delay={i * 0.08}>
-                <span className="pillar__num">{num}</span>
+                <span className="pillar__bg" aria-hidden="true">{num}</span>
+                <span className="pillar__icon" aria-hidden="true"><Scales size={30} strokeWidth={1.6} /></span>
                 <h3>{h}</h3>
                 <p>{p}</p>
               </Reveal>
@@ -144,7 +145,9 @@ export default function App() {
           <div className="scent-row">
             {SCENTS.map((s, i) => (
               <Reveal key={s.k} className="scent" style={accentStyle(s.accent)} delay={i * 0.06}>
-                <div className="scent__media" style={{ backgroundImage: `url(${img[s.k]})` }} />
+                <div className="scent__media">
+                  <div className="scent__photo" style={{ backgroundImage: `url(${img[s.k]})` }} />
+                </div>
                 <div className="scent__body">
                   <div className="scent__name">
                     <h3>{s.n}</h3>
@@ -167,7 +170,9 @@ export default function App() {
           <div className="cards-4">
             {LINES.map((l, i) => (
               <Reveal key={l.k} className="line" delay={i * 0.07}>
-                <div className="line__media" style={{ backgroundImage: `url(${img[l.k]})` }} />
+                <div className="line__media">
+                  <div className="line__photo" style={{ backgroundImage: `url(${img[l.k]})` }} />
+                </div>
                 <h3>{l.n}</h3>
                 <p>{l.p}</p>
               </Reveal>
