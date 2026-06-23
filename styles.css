@@ -1,0 +1,276 @@
+/* ============================================================
+   МИСКАЛЬ — фирменные стили
+   Палитра, типографика и принципы из бренд-бука.
+   ============================================================ */
+
+:root {
+  /* Палитра бренда */
+  --oud:        #241711; /* удовый коричневый, основной тёмный */
+  --oud-2:      #2A1B12;
+  --brass:      #B5904A; /* латунь на светлом */
+  --brass-lt:   #CBA15B; /* латунь на тёмном */
+  --cream:      #F2E9D6; /* фон, стекло */
+  --cream-2:    #ECE3D0;
+  --sand:       #E4D6B8; /* песочный беж */
+  --sand-2:     #D9C7A8;
+  --graphite:   #3A2E22; /* основной текст */
+  --label:      #F7F1E2; /* тёплая «этикетка» */
+
+  /* Тёмный плейсхолдер «темнота вместо фото» */
+  --void:       #1A100B;
+  --void-edge:  #2E1E14;
+
+  /* Кривые движения (Emil: сильный ease-out, не встроенный) */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --maxw: 1160px;
+  --gutter: clamp(20px, 5vw, 64px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  color: var(--graphite);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+[lang="ar"] { font-family: "Amiri", "Times New Roman", serif; }
+
+a { color: inherit; text-decoration: none; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+
+/* ===================== Навигация ===================== */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px var(--gutter);
+  color: var(--cream);
+  transition: background 300ms var(--ease-out), color 300ms var(--ease-out),
+              padding 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+}
+.nav.is-solid {
+  background: rgba(36, 23, 17, 0.82);
+  backdrop-filter: blur(12px) saturate(120%);
+  padding-top: 12px; padding-bottom: 12px;
+  box-shadow: 0 1px 0 rgba(203, 161, 91, 0.18);
+}
+.nav__brand { display: inline-flex; align-items: center; gap: 10px; }
+.nav__mark { color: var(--brass-lt); display: inline-flex; }
+.nav__word { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; letter-spacing: 0.22em; }
+.nav__links { display: flex; gap: 28px; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.nav__links a { opacity: 0.78; transition: opacity 200ms var(--ease-out); }
+.nav__links a:hover { opacity: 1; }
+@media (max-width: 720px) { .nav__links { display: none; } }
+
+/* ===================== Кнопки ===================== */
+.btn {
+  --bg: var(--brass-lt);
+  display: inline-block;
+  margin-top: 34px;
+  padding: 14px 30px;
+  background: var(--bg);
+  color: var(--oud);
+  font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--bg);
+  border-radius: 2px;
+  transition: transform 160ms var(--ease-out), background 200ms var(--ease-out), color 200ms var(--ease-out);
+}
+.btn:hover { background: transparent; color: var(--brass-lt); }
+.btn:active { transform: scale(0.97); }
+.btn--ghost { background: transparent; color: var(--cream); border-color: rgba(203,161,91,0.5); }
+.btn--ghost:hover { background: var(--brass-lt); color: var(--oud); border-color: var(--brass-lt); }
+
+/* ===================== Плейсхолдер «темнота» ===================== */
+[data-img] {
+  position: relative;
+  background:
+    radial-gradient(120% 90% at 50% 30%, var(--void-edge) 0%, var(--void) 70%);
+  overflow: hidden;
+}
+[data-img]::before { /* едва заметный знак-весы как водяной знак */
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none' stroke='%23CBA15B' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M60 16v76M40 92h40M60 26 26 42m34-16 34 16M26 42 15 66h22L26 42ZM94 42 83 66h22L94 42Z'/%3E%3C/svg%3E")
+    center / 64px no-repeat;
+  opacity: 0.06;
+}
+.img-note {
+  position: absolute; left: 14px; bottom: 12px; right: 14px;
+  font-size: 0.66rem; letter-spacing: 0.05em; line-height: 1.4;
+  color: rgba(203, 161, 91, 0.42);
+  text-transform: uppercase;
+}
+
+/* ===================== Hero ===================== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid; place-items: center;
+  text-align: center;
+  color: var(--cream);
+  padding: 120px var(--gutter) 80px;
+  isolation: isolate;
+}
+.hero__media { position: absolute; inset: 0; z-index: -2; }
+.hero::after { /* тёплая виньетка поверх «темноты» */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(90% 70% at 50% 40%, rgba(42,27,18,0.1) 0%, rgba(20,12,8,0.72) 100%);
+}
+.hero__inner { max-width: 760px; }
+.hero__logo { color: var(--brass-lt); margin-bottom: 26px; display: inline-block; }
+.hero__title { font-size: clamp(3.4rem, 11vw, 7rem); letter-spacing: 0.16em; padding-left: 0.16em; }
+.hero__arabic { font-size: clamp(2rem, 7vw, 3.4rem); color: var(--brass-lt); margin-top: 6px; }
+.hero__slogan {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic; font-size: clamp(1.3rem, 3.4vw, 1.9rem);
+  color: var(--sand); margin-top: 18px;
+}
+.hero__sub { margin-top: 20px; font-size: 1rem; font-weight: 300; color: rgba(242,233,214,0.8); }
+.hero__scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); }
+.hero__scroll span {
+  display: block; width: 1px; height: 46px;
+  background: linear-gradient(var(--brass-lt), transparent);
+  animation: scrollPulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes scrollPulse { 0%,100% { opacity: 0.25; transform: scaleY(0.7); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
+
+/* ===================== Общие секции ===================== */
+.section { padding: clamp(72px, 11vw, 140px) 0; }
+.eyebrow {
+  font-size: 0.74rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--brass); margin-bottom: 18px;
+}
+.section__title {
+  font-size: clamp(1.9rem, 4.6vw, 3.2rem);
+  max-width: 18ch; margin-bottom: 8px; text-align: center; margin-inline: auto;
+}
+.legenda .section__title, .pillars .section__title, .aromaty .section__title,
+.liniya .section__title, .tsena .section__title, .otlichie .section__title { margin-bottom: 56px; }
+.section__title--left { text-align: left; margin-inline: 0; }
+
+/* ===================== Легенда ===================== */
+.legenda { background: var(--cream-2); }
+.legenda__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+.legenda__text p { margin-bottom: 18px; font-size: 1.05rem; }
+.legenda__text strong { color: var(--oud); }
+.ticks { list-style: none; margin-top: 26px; display: grid; gap: 12px; }
+.ticks li { position: relative; padding-left: 26px; font-size: 0.98rem; }
+.ticks li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 13px; height: 1px; background: var(--brass); }
+.legenda__media { aspect-ratio: 4 / 5; border-radius: 3px; border: 1px solid rgba(181,144,74,0.25); }
+@media (max-width: 820px) { .legenda__grid { grid-template-columns: 1fr; } .legenda__media { aspect-ratio: 16/10; } }
+
+/* ===================== Карточные сетки ===================== */
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 36px); }
+.cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.4vw, 28px); }
+@media (max-width: 900px) { .cards-3 { grid-template-columns: 1fr; } .cards-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .cards-4 { grid-template-columns: 1fr; } }
+
+/* Опоры */
+.pillar { padding: 38px 30px; background: var(--cream-2); border: 1px solid rgba(181,144,74,0.18); border-radius: 3px; }
+.pillar__num { font-family: "Cormorant Garamond", serif; font-size: 1.6rem; color: var(--brass); }
+.pillar h3 { font-size: 1.7rem; margin: 12px 0 10px; }
+.pillar p { font-size: 0.98rem; color: #5a4a39; }
+
+/* ===================== Ароматы ===================== */
+.aromaty { background: var(--oud); color: var(--cream); }
+.aromaty .eyebrow { color: var(--brass-lt); }
+.aromaty .section__title { color: var(--cream); }
+.scents { display: grid; gap: 1px; background: rgba(203,161,91,0.16); border: 1px solid rgba(203,161,91,0.16); border-radius: 4px; overflow: hidden; }
+.scent { display: grid; grid-template-columns: 280px 1fr; background: var(--oud); }
+.scent__media { aspect-ratio: 1; min-height: 220px; }
+.scent__body { padding: clamp(26px, 3vw, 44px); display: flex; flex-direction: column; justify-content: center; position: relative; }
+.scent__bar { position: absolute; left: 0; top: 26px; bottom: 26px; width: 3px; background: var(--accent); border-radius: 3px; }
+.scent__head { display: flex; align-items: baseline; gap: 16px; }
+.scent__head h3 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--accent); letter-spacing: 0.06em; }
+.scent__ar { font-size: 1.7rem; color: rgba(242,233,214,0.55); }
+.scent__meaning { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(203,161,91,0.7); margin-top: 6px; }
+.scent__notes { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.25rem; color: var(--sand); margin-top: 14px; }
+.scent__char { font-size: 0.98rem; font-weight: 300; color: rgba(242,233,214,0.78); margin-top: 10px; max-width: 46ch; }
+@media (max-width: 720px) { .scent { grid-template-columns: 1fr; } .scent__media { aspect-ratio: 16/10; min-height: 0; } .scent__bar { display:none; } }
+
+/* ===================== Линии ===================== */
+.line__media { aspect-ratio: 4/5; border-radius: 3px; margin-bottom: 18px; border: 1px solid rgba(181,144,74,0.2); }
+.line h3 { font-size: 1.6rem; margin-bottom: 8px; }
+.line p { font-size: 0.94rem; color: #5a4a39; }
+
+/* ===================== Флакон ===================== */
+.flakon { background: var(--sand); }
+.flakon__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
+.flakon__media { aspect-ratio: 3/4; border-radius: 3px; border: 1px solid rgba(58,46,34,0.18); }
+.flakon__text p { font-size: 1.05rem; margin-bottom: 14px; }
+.specs { list-style: none; margin: 24px 0; display: grid; gap: 14px; }
+.specs li { padding-bottom: 14px; border-bottom: 1px solid rgba(58,46,34,0.16); font-size: 0.98rem; }
+.specs li span { display: inline-block; min-width: 130px; color: var(--brass); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.flakon__label { font-size: 1.8rem; color: var(--oud); margin-top: 22px; letter-spacing: 0.04em; }
+@media (max-width: 820px) { .flakon__grid { grid-template-columns: 1fr; } .flakon__media { aspect-ratio: 16/10; } }
+
+/* ===================== Ценовая лестница ===================== */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 28px); align-items: end; }
+.step { padding: 34px 30px; background: var(--cream-2); border: 1px solid rgba(181,144,74,0.2); border-radius: 3px; }
+.step--top { background: var(--oud); color: var(--cream); border-color: rgba(203,161,91,0.3); padding-top: 50px; padding-bottom: 50px; }
+.step--top h3 { color: var(--brass-lt); }
+.step--top p { color: rgba(242,233,214,0.78); }
+.step__tier { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); }
+.step h3 { font-size: 1.7rem; margin: 12px 0 10px; }
+.step p { font-size: 0.95rem; color: #5a4a39; }
+@media (max-width: 820px) { .ladder { grid-template-columns: 1fr; } .step--top { padding: 34px 30px; } }
+
+/* ===================== Отличие ===================== */
+.diff { padding: 30px 26px; border-top: 2px solid var(--brass); background: var(--cream-2); }
+.diff h3 { font-size: 1.5rem; margin-bottom: 8px; }
+.diff p { font-size: 0.92rem; color: #5a4a39; }
+
+/* ===================== Финальный блок ===================== */
+.closer { position: relative; color: var(--cream); text-align: center; padding: clamp(90px, 14vw, 180px) 0; isolation: isolate; }
+.closer__media { position: absolute; inset: 0; z-index: -2; }
+.closer::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(20,12,8,0.7); }
+.closer__ar { font-size: clamp(2rem, 6vw, 3.2rem); color: var(--brass-lt); }
+.closer h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 8px 0 20px; }
+.closer__sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: clamp(1.1rem, 2.6vw, 1.5rem); max-width: 38ch; margin: 0 auto 8px; color: var(--sand); }
+
+/* ===================== Подвал ===================== */
+.footer { background: var(--oud-2); color: var(--cream); padding: 64px 0 40px; }
+.footer__grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: center; }
+.footer__brand { display: flex; flex-direction: column; gap: 4px; }
+.footer__brand .nav__mark { margin-bottom: 4px; }
+.footer__word { font-family: "Cormorant Garamond", serif; font-size: 1.3rem; letter-spacing: 0.18em; }
+.footer__tag { font-style: italic; font-family: "Cormorant Garamond", serif; color: var(--sand); }
+.footer__nav { display: flex; gap: 22px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.footer__nav a { opacity: 0.72; transition: opacity 200ms var(--ease-out); }
+.footer__nav a:hover { opacity: 1; }
+.footer__meta { text-align: right; font-size: 0.8rem; color: rgba(242,233,214,0.6); line-height: 1.8; }
+@media (max-width: 760px) { .footer__grid { grid-template-columns: 1fr; text-align: left; } .footer__meta { text-align: left; } }
+
+/* ===================== Появление при скролле ===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
+  .hero__scroll span { animation: none; }
+}
