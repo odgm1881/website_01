@@ -86,10 +86,11 @@ body {
 }
 
 /* Грейн-текстура поверх всего: убирает «пустоту» и цифровую плоскость. */
+/* Грейн без mix-blend-mode: смешивание заставляло композитор перерисовывать
+   весь экран на каждом кадре анимации. Плоский оверлей живёт в своём GPU-слое. */
 body::before {
-  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:0.05;
+  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:0.045;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode:multiply;
 }
 
 h1,h2,h3 { font-family:var(--serif); font-weight:500; line-height:1.06; letter-spacing:0.005em; }
@@ -114,7 +115,8 @@ img { display:block; max-width:100%; }
 
 /* Тёплый радиальный акцент для светлых секций (глубина вместо плоского фона). */
 .glow { position:absolute; inset:0; z-index:-1; pointer-events:none; }
-.glow::before, .glow::after { content:""; position:absolute; border-radius:50%; filter:blur(60px); opacity:0.5; }
+/* Радиальный градиент уже мягкий: filter:blur(60px) был лишним и дорогим в перерисовке. */
+.glow::before, .glow::after { content:""; position:absolute; border-radius:50%; opacity:0.6; }
 .glow::before { width:46vw; height:46vw; top:-12vw; left:-10vw; background:radial-gradient(circle,rgba(203,161,91,0.18),transparent 70%); }
 .glow::after { width:40vw; height:40vw; bottom:-14vw; right:-8vw; background:radial-gradient(circle,rgba(154,74,38,0.10),transparent 70%); }
 
@@ -149,11 +151,11 @@ img { display:block; max-width:100%; }
 .nav {
   position:fixed; inset:0 0 auto 0; z-index:50; display:flex; align-items:center;
   justify-content:space-between; height:68px; padding-inline:var(--gutter); color:var(--cream);
-  transition:background 300ms var(--ease-out), height 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+  transition:background 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
 }
 .nav.is-solid { height:60px; background:rgba(36,23,17,0.85); box-shadow:0 1px 0 var(--hair-light); }
 @supports (backdrop-filter:blur(10px)) {
-  .nav.is-solid { background:rgba(36,23,17,0.72); backdrop-filter:blur(12px) saturate(120%); }
+  .nav.is-solid { background:rgba(36,23,17,0.78); backdrop-filter:blur(8px); }
 }
 .nav__brand { display:inline-flex; align-items:center; gap:10px; }
 .mark { color:var(--brass-lt); display:inline-flex; }
