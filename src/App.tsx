@@ -119,6 +119,8 @@ export default function App() {
 
       {/* Три опоры */}
       <section className="section pillars">
+        <div className="glow" />
+        <div className="crest" aria-hidden="true"><Scales size={440} strokeWidth={1} /></div>
         <Reveal><h2 className="section__h wrap">Три опоры бренда</h2></Reveal>
         <div className="wrap">
           <div className="cards-3">
@@ -200,11 +202,14 @@ export default function App() {
 
       {/* Цена */}
       <section className="section ladder-section" id="tsena">
+        <div className="glow" />
+        <div className="crest" aria-hidden="true"><Scales size={440} strokeWidth={1} /></div>
         <Reveal><h2 className="section__h wrap">Путь вверх: от пробы до статуса</h2></Reveal>
         <div className="wrap">
           <div className="ladder">
             {LADDER.map((s, i) => (
               <Reveal key={s.k} className={`step${s.top ? " step--top" : ""}`} delay={i * 0.08}>
+                <span className="step__bg" aria-hidden="true">{i + 1}</span>
                 <span className="step__k">{s.k}</span>
                 <h3>{s.h}</h3>
                 <p>{s.p}</p>
@@ -217,6 +222,7 @@ export default function App() {
       {/* Отличие */}
       <section className="section values">
         <div className="glow" />
+        <div className="crest" aria-hidden="true"><Scales size={440} strokeWidth={1} /></div>
         <Reveal><h2 className="section__h wrap">Выделяемся форматом, а не громкостью</h2></Reveal>
         <div className="wrap">
           <div className="values__strip">
