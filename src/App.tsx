@@ -142,8 +142,22 @@ export default function App() {
         <div className="wrap">
           <Reveal><p className="eyebrow">Коллекция</p></Reveal>
           <Reveal><h2 className="section__h section__h--light">Пять ароматов, единый знак,<br />свой акцент у каждого</h2></Reveal>
-          <div className="scent-row">
-            {SCENTS.map((s, i) => (
+          <Reveal className="feature" style={accentStyle(SCENTS[0].accent)}>
+            <div className="feature__media">
+              <div className="feature__photo" style={{ backgroundImage: `url(${img[SCENTS[0].k]})` }} />
+            </div>
+            <div className="feature__body">
+              <span className="feature__tag">{SCENTS[0].tag}</span>
+              <div className="scent__name">
+                <h3>{SCENTS[0].n}</h3>
+                <span className="scent__ar" lang="ar" dir="rtl">{SCENTS[0].ar}</span>
+              </div>
+              <p className="scent__notes">{SCENTS[0].notes}</p>
+              <p className="feature__desc">Тёплый, парадный аромат-благословение. Наносят каплей на запястье утром, и он раскрывается весь день.</p>
+            </div>
+          </Reveal>
+          <div className="scent-grid">
+            {SCENTS.slice(1).map((s, i) => (
               <Reveal key={s.k} className="scent" style={accentStyle(s.accent)} delay={i * 0.06}>
                 <div className="scent__media">
                   <div className="scent__photo" style={{ backgroundImage: `url(${img[s.k]})` }} />
