@@ -1,29 +1,27 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
 import { Reveal } from "./components/Reveal";
 import { Scales } from "./components/Scales";
 import { Photo } from "./components/Photo";
+import { CountUp } from "./components/CountUp";
+import { Collection } from "./components/Collection";
+import { CONTACTS, WAITLIST } from "./site";
 
-const NAV = [
+const NAV: [string, string][] = [
   ["#legenda", "Легенда"],
   ["#aromaty", "Ароматы"],
   ["#liniya", "Линии"],
   ["#flakon", "Флакон"],
-  ["#tsena", "Цена"],
+  ["#tsena", "Путь"],
 ];
 
-const PILLARS = [
+const PILLARS: [string, string, string][] = [
   ["01", "Подлинность", "Настоящие масляные композиции, без спирта, как было всегда на Востоке. Раскрываются от тепла кожи, держатся 8-12 часов."],
   ["02", "Вес как код", "Каждый продукт измеряется в мискалях. Это одновременно и смысл, и визуальный язык бренда."],
   ["03", "Ремесло", "Прозрачное происхождение уда, розы и смол. Малые партии. Внимание к детали вместо конвейера."],
 ];
 
-const SCENTS = [
-  { k: "rizk", n: "Ризк", ar: "رزق", notes: "Роза Таиф, шафран, уд", tag: "Флагман", accent: "#C98A2E" },
-  { k: "leil", n: "Лейл", ar: "ليل", notes: "Амбра, мускус, ладан", tag: "Ночь", accent: "#3E4D78" },
-  { k: "sahar", n: "Сахар", ar: "سحر", notes: "Бергамот, жасмин, сандал", tag: "Рассвет", accent: "#C9A36B" },
-  { k: "misk", n: "Миск", ar: "مسك", notes: "Белый мускус, пудра", tag: "Мускус", accent: "#B98A86" },
-  { k: "udroyal", n: "Уд Рояль", ar: "عود", notes: "Дымный уд, кожа, специи", tag: "Вершина", accent: "#7A6049" },
-];
+const TRUST = ["Без спирта", "Малые партии", "Прозрачное происхождение"];
 
 const LINES = [
   { k: "attar", n: "Аттар", p: "Масляные духи в роллерах и dab-on, 3-12 мл. Наносятся каплями, без спирта." },
@@ -32,7 +30,7 @@ const LINES = [
   { k: "nabor", n: "Наборы", p: "Деревянная шкатулка с мини-аттарами и мерной ложечкой. Главный подарок." },
 ];
 
-const SPECS = [
+const SPECS: [string, string][] = [
   ["Стекло", "матовое, аптекарское, не глянцевое"],
   ["Крышка", "латунь или дерево, не пластик"],
   ["Нанесение", "роллер или стеклянная палочка, по капле"],
@@ -40,30 +38,38 @@ const SPECS = [
 ];
 
 const LADDER = [
-  { k: "Входной", h: "Аттар 3 мл", p: "Знакомство и импульсная покупка. Первое касание бренда.", top: false },
-  { k: "Средний", h: "Аттар 12 мл, бахур", p: "Основной объём продаж. Возврат за полным форматом любимого аромата.", top: false },
-  { k: "Премиум", h: "Дехналь уд, шкатулки", p: "Статус бренда и подарки. Уд и наборы поднимают ценность всей линейки.", top: true },
+  { k: "Входной", h: "Аттар 3 мл", p: "Знакомство и импульсная покупка. Первое касание бренда.", cta: "Попробовать", top: false },
+  { k: "Средний", h: "Аттар 12 мл, бахур", p: "Основной объём продаж. Возврат за полным форматом любимого аромата.", cta: "Взять объём", top: false },
+  { k: "Премиум", h: "Дехналь уд, шкатулки", p: "Статус бренда и подарки. Уд и наборы поднимают ценность всей линейки.", cta: "В подарок", top: true },
 ];
 
-const VALUES = [
+const VALUES: [string, string][] = [
   ["Без спирта", "Масляная традиция, а не ограничение."],
   ["Концепция веса", "Код, которого нет ни у кого в категории."],
   ["Тихий люкс", "Эстетика против золотого китча."],
   ["Прозрачность", "Уд, роза и смолы с историей. Малые партии."],
 ];
 
-function accentStyle(accent: string): CSSProperties {
-  return { ["--accent" as string]: accent } as CSSProperties;
-}
-
 export default function App() {
   const [solid, setSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  function onWaitlist(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const email = String(data.get("email") || "").trim();
+    if (!email) return;
+    const subject = encodeURIComponent("Лист ожидания МИСКАЛЬ");
+    const body = encodeURIComponent(`Добавьте меня в лист ожидания. Почта: ${email}`);
+    window.location.href = `mailto:${CONTACTS.email}?subject=${subject}&body=${body}`;
+  }
 
   return (
     <>
@@ -74,10 +80,27 @@ export default function App() {
           <span className="nav__word">МИСКАЛЬ</span>
         </a>
         <nav className="nav__links" aria-label="Разделы">
-          {NAV.map(([href, label]) => (
-            <a key={href} href={href}>{label}</a>
-          ))}
+          {NAV.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
         </nav>
+        <div className="nav__right">
+          <a href={WAITLIST} className="btn btn--sm nav__cta">Оставить почту</a>
+          <button
+            type="button"
+            className="nav__burger"
+            aria-label="Меню"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
+        {menuOpen && (
+          <nav className="nav__menu" aria-label="Разделы">
+            {NAV.map(([href, label]) => (
+              <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+            ))}
+          </nav>
+        )}
       </header>
 
       {/* Hero */}
@@ -85,13 +108,28 @@ export default function App() {
         <Photo name="hero" className="hero__img" eager />
         <Reveal className="hero__inner">
           <div className="lockup">
-            <span className="lockup__mark"><Scales size={72} strokeWidth={2.2} /></span>
+            <span className="lockup__mark" aria-hidden="true"><Scales size={72} strokeWidth={2.2} /></span>
             <h1 className="lockup__word">МИСКАЛЬ</h1>
             <p className="lockup__ar" lang="ar" dir="rtl">مثقال</p>
           </div>
           <p className="hero__slogan">Аромат на вес золота</p>
-          <a href="#aromaty" className="btn">Смотреть коллекцию</a>
+          <p className="hero__clarify">Масляная парфюмерия без спирта, бахур и уд.</p>
+          <div className="hero__cta">
+            <a href={WAITLIST} className="btn">Оставить почту</a>
+            <a href="#aromaty" className="btn btn--outline">Смотреть коллекцию</a>
+          </div>
         </Reveal>
+      </section>
+
+      {/* Плашка-доверие */}
+      <section className="trust" aria-label="Принципы бренда">
+        <div className="wrap trust__row">
+          {TRUST.map((t) => (
+            <span className="trust__item" key={t}>
+              <Scales size={18} strokeWidth={1.6} />{t}
+            </span>
+          ))}
+        </div>
       </section>
 
       {/* Легенда */}
@@ -100,13 +138,19 @@ export default function App() {
         <div className="wrap legend__grid">
           <Reveal className="legend__lede">
             <h2 className="display">Мера, которой взвешивали<br />самое драгоценное</h2>
-            <p>
-              Мискаль (<span lang="ar" dir="rtl">مثقال</span>, <em>mithqāl</em>) это древняя мера веса.
-              Ею веками отмеряли золото, мускус, амбру, шафран и уд.
-            </p>
+            <p>Мискаль (<span lang="ar" dir="rtl">مثقال</span>, <em>mithqāl</em>) это древняя мера веса. Ею веками отмеряли золото, мускус, амбру, шафран и уд.</p>
             <p>Мы вернулись к тому времени, когда аромат был концентрированным, дорогим и наносился каплями. Это не флакон спрея, а мера драгоценного.</p>
             <div className="figure">
-              <span className="figure__num">4,25</span>
+              <motion.span
+                className="figure__scale" aria-hidden="true"
+                initial={{ rotate: -9 }}
+                whileInView={{ rotate: [-9, 6, -3, 0] }}
+                viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
+                <Scales size={32} strokeWidth={1.8} />
+              </motion.span>
+              <span className="figure__num"><CountUp value={4.25} /></span>
               <span className="figure__rest">
                 <span className="figure__unit">грамма</span>
                 <span className="figure__cap">один мискаль</span>
@@ -138,47 +182,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* Ароматы: пять в одну строку */}
-      <section className="section aromaty" id="aromaty">
-        <div className="glow" />
-        <div className="wrap">
-          <Reveal><p className="eyebrow">Коллекция</p></Reveal>
-          <Reveal><h2 className="section__h section__h--light">Пять ароматов, единый знак,<br />свой акцент у каждого</h2></Reveal>
-          <Reveal className="feature" style={accentStyle(SCENTS[0].accent)}>
-            <div className="feature__media">
-              <Photo name={SCENTS[0].k} className="feature__photo" alt="Флакон аромата Ризк" />
-            </div>
-            <div className="feature__body">
-              <span className="feature__tag">{SCENTS[0].tag}</span>
-              <div className="scent__name">
-                <h3>{SCENTS[0].n}</h3>
-                <span className="scent__ar" lang="ar" dir="rtl">{SCENTS[0].ar}</span>
-              </div>
-              <p className="scent__notes">{SCENTS[0].notes}</p>
-              <p className="feature__desc">Тёплый, парадный аромат-благословение. Наносят каплей на запястье утром, и он раскрывается весь день.</p>
-            </div>
-          </Reveal>
-          <div className="scent-grid">
-            {SCENTS.slice(1).map((s, i) => (
-              <Reveal key={s.k} className="scent" style={accentStyle(s.accent)} delay={i * 0.06}>
-                <div className="scent__media">
-                  <Photo name={s.k} className="scent__photo" alt={`Флакон аромата ${s.n}`} />
-                </div>
-                <div className="scent__body">
-                  <div className="scent__name">
-                    <h3>{s.n}</h3>
-                    <span className="scent__ar" lang="ar" dir="rtl">{s.ar}</span>
-                  </div>
-                  <p className="scent__notes">{s.notes}</p>
-                  <span className="scent__tag">{s.tag}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Ароматы (интерактивная полка) */}
+      <Collection />
 
-      {/* Линии: карточки */}
+      {/* Линии */}
       <section className="section lines" id="liniya">
         <div className="glow" />
         <Reveal><h2 className="section__h wrap">От входного аттара до коллекционного уда</h2></Reveal>
@@ -209,10 +216,7 @@ export default function App() {
             <p>Невысокий, плотный, с прямыми гранями и мягко скруглёнными углами. Матовое кремовое или дымчато-янтарное стекло. Крышка из латуни или дерева, увесистая, с приятным щелчком.</p>
             <dl className="spec">
               {SPECS.map(([dt, dd]) => (
-                <div className="spec__row" key={dt}>
-                  <dt>{dt}</dt>
-                  <dd>{dd}</dd>
-                </div>
+                <div className="spec__row" key={dt}><dt>{dt}</dt><dd>{dd}</dd></div>
               ))}
             </dl>
             <p className="bottle__label" lang="ar" dir="rtl">رزق · ٦ مثقال</p>
@@ -220,11 +224,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* Цена */}
+      {/* Путь (как устроена коллекция) */}
       <section className="section ladder-section" id="tsena">
         <div className="glow" />
         <div className="crest" aria-hidden="true"><Scales size={440} strokeWidth={1} /></div>
-        <Reveal><h2 className="section__h wrap">Путь вверх: от пробы до статуса</h2></Reveal>
+        <Reveal><p className="eyebrow wrap">Как устроена коллекция</p></Reveal>
+        <Reveal><h2 className="section__h wrap">Путь: от пробы до статуса</h2></Reveal>
         <div className="wrap">
           <div className="ladder">
             {LADDER.map((s, i) => (
@@ -233,6 +238,7 @@ export default function App() {
                 <span className="step__k">{s.k}</span>
                 <h3>{s.h}</h3>
                 <p>{s.p}</p>
+                <a href={WAITLIST} className="step__cta">{s.cta}</a>
               </Reveal>
             ))}
           </div>
@@ -256,14 +262,21 @@ export default function App() {
         </div>
       </section>
 
-      {/* Финал */}
-      <section className="closer">
+      {/* Финал: главный призыв */}
+      <section className="closer" id="finale">
         <Photo name="closer" className="closer__img" />
         <Reveal className="wrap closer__inner">
           <p className="closer__ar" lang="ar" dir="rtl">وزن العطر</p>
-          <h2 className="display">Вес аромата</h2>
-          <p className="closer__sub">То, что взвешивают, а не разбрызгивают.</p>
-          <a href="#hero" className="btn btn--ghost">Наверх</a>
+          <h2 className="display">Аромат скоро в продаже</h2>
+          <p className="closer__sub">Оставьте почту, и мы пришлём первыми, когда откроются продажи. То, что взвешивают, а не разбрызгивают.</p>
+          <form className="waitlist" onSubmit={onWaitlist}>
+            <input type="email" name="email" required placeholder="вашапочта@пример.ру" aria-label="Электронная почта" />
+            <button type="submit" className="btn">Оставить почту</button>
+          </form>
+          <div className="socials">
+            <a href={CONTACTS.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href={CONTACTS.telegram} target="_blank" rel="noopener noreferrer">Telegram</a>
+          </div>
         </Reveal>
       </section>
 
@@ -276,15 +289,16 @@ export default function App() {
             <p className="footer__tag">Мера драгоценного</p>
           </div>
           <nav className="footer__nav" aria-label="Разделы">
-            {NAV.map(([href, label]) => (
-              <a key={href} href={href}>{label}</a>
-            ))}
+            {NAV.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
           </nav>
-          <p className="footer__meta">
-            Масляная парфюмерия, бахур и уд.<br />
-            2026 МИСКАЛЬ. Аромат на вес золота.
-          </p>
+          <div className="footer__connect">
+            <p className="footer__connect-h">Оставайтесь на связи</p>
+            <a href={`mailto:${CONTACTS.email}`}>{CONTACTS.email}</a>
+            <a href={CONTACTS.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href={CONTACTS.telegram} target="_blank" rel="noopener noreferrer">Telegram</a>
+          </div>
         </div>
+        <div className="wrap footer__legal">2026 МИСКАЛЬ. Аромат на вес золота.</div>
       </footer>
     </>
   );
