@@ -171,7 +171,7 @@ export default function App() {
         <div className="wrap">
           <div className="cards-3">
             {PILLARS.map(([num, h, p], i) => (
-              <Reveal key={num} className="pillar" delay={i * 0.08}>
+              <Reveal key={num} className="pillar" delay={i * 0.12}>
                 <span className="pillar__bg" aria-hidden="true">{num}</span>
                 <span className="pillar__icon" aria-hidden="true"><Scales size={30} strokeWidth={1.6} /></span>
                 <h3>{h}</h3>
@@ -192,7 +192,7 @@ export default function App() {
         <div className="wrap">
           <div className="cards-4">
             {LINES.map((l, i) => (
-              <Reveal key={l.k} className="line" delay={i * 0.07}>
+              <Reveal key={l.k} className="line" delay={i * 0.12}>
                 <div className="line__media">
                   <Photo name={l.k} className="line__photo" alt={l.n} />
                 </div>
@@ -233,7 +233,7 @@ export default function App() {
         <div className="wrap">
           <div className="ladder">
             {LADDER.map((s, i) => (
-              <Reveal key={s.k} className={`step${s.top ? " step--top" : ""}`} delay={i * 0.08}>
+              <Reveal key={s.k} className={`step${s.top ? " step--top" : ""}`} delay={i * 0.12}>
                 <span className="step__bg" aria-hidden="true">{i + 1}</span>
                 <span className="step__k">{s.k}</span>
                 <h3>{s.h}</h3>
@@ -253,7 +253,7 @@ export default function App() {
         <div className="wrap">
           <div className="values__strip">
             {VALUES.map(([h, p], i) => (
-              <Reveal key={h} className="value" delay={i * 0.06}>
+              <Reveal key={h} className="value" delay={i * 0.1}>
                 <h3>{h}</h3>
                 <p>{p}</p>
               </Reveal>

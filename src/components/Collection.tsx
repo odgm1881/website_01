@@ -25,7 +25,7 @@ export function Collection() {
         <Reveal><p className="eyebrow">Коллекция</p></Reveal>
         <Reveal><h2 className="section__h section__h--light">Пять ароматов, единый знак.<br />Выберите свой.</h2></Reveal>
 
-        <div className="shelf" style={accentVar(s.accent)}>
+        <Reveal className="shelf" style={accentVar(s.accent)} delay={0.05}>
           <div className="shelf__feature">
             <div className="shelf__media">
               <AnimatePresence mode="wait">
@@ -75,7 +75,7 @@ export function Collection() {
               </button>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
